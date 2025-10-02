@@ -3,580 +3,215 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Full Time Fertilizer — Catálogo</title>
+  <title>Osvaldo Jatobá — Fertilizantes</title>
 
-  <!-- Bootstrap 5 CSS -->
+  <!-- Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
   <style>
-    :root{
-      --glass: rgba(255,255,255,0.08);
-      --accent1: #0f172a;
-      --accent2: #0ea5a4;
-      --accent3: #06b6d4;
-      --card-bg: rgba(255,255,255,0.03);
-      --glass-2: rgba(255,255,255,0.04);
-    }
+    :root{ --accent-1: #0ea5a4; --accent-2: #06b6d4; --muted:#94a3b8 }
+    body { font-family: Inter, system-ui, sans-serif; background: #f7fafc; color: #334155; }
+    header { background: linear-gradient(135deg, #e0f7fa, #f0fdfa); color: #0f172a; padding: 5rem 0 3rem; border-bottom-left-radius: 3rem; border-bottom-right-radius: 3rem; text-align: center; position: relative; overflow: hidden; }
+    header .top-deco{ position:absolute;left:0;right:0;top:0;width:100%;height:150px;pointer-events:none }
+    header h1 { font-weight: 800; color: #0e7490; font-size: 3rem; }
+    header p { font-size: 1.15rem; color: #155e75; margin-bottom: .5rem; }
+    .highlight { color: var(--accent-1); font-weight:700 }
+    .section-title { margin: 3rem 0 2rem; text-align: center; font-weight: 700; color: #0f172a; }
 
-    body{
-      background: radial-gradient(1200px 600px at 10% 10%, rgba(6,182,212,0.06), transparent),
-                  linear-gradient(180deg, #020617 0%, #061028 100%);
-      color: #e6eef7;
-      -webkit-font-smoothing:antialiased;
-      min-height:100vh;
-      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-    }
+    .card-base { border: none; border-radius: 1.2rem; background: white; box-shadow: 0 8px 24px rgba(16,24,40,0.06); transition: transform .22s ease, box-shadow .22s ease; position: relative; overflow: hidden; }
+    .card-base:hover{ transform: translateY(-6px); box-shadow: 0 18px 38px rgba(16,24,40,0.08) }
 
-    /* Hero */
-    .hero{
-      padding: 4.5rem 1rem;
-      background: linear-gradient(90deg, rgba(6,182,212,0.06), rgba(14,165,164,0.02));
-      border-radius: 18px;
-      box-shadow: 0 10px 30px rgba(2,6,23,0.6);
-      backdrop-filter: blur(6px) saturate(120%);
-      margin-top: 1.2rem;
-    }
-    .brand-mark{
-      width:72px;height:72px;border-radius:14px;
-      display:flex;align-items:center;justify-content:center;
-      background:linear-gradient(135deg, rgba(6,182,212,0.15), rgba(6,182,212,0.05));
-      border: 1px solid rgba(255,255,255,0.03);
-      box-shadow: 0 8px 20px rgba(6,182,212,0.06);
-    }
+    .card-deco-svg{ position:absolute; right:-10%; top:-10%; width:160%; height:160%; opacity:.12; transform: rotate(6deg); }
 
-    /* cards */
-    .glass-card{
-      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      border: 1px solid rgba(255,255,255,0.04);
-      border-radius: 14px;
-      padding: 1.25rem;
-      transition: transform .25s ease, box-shadow .25s ease;
-    }
-    .glass-card:hover{
-      transform: translateY(-6px);
-      box-shadow: 0 18px 40px rgba(2,6,23,0.6);
-    }
+    .icon-xl { display:block; margin:0 auto 12px; font-size:96px; font-weight:700; color:var(--accent-1); text-align:center; }
+    .icon-xl svg { width:96px!important; height:96px!important; stroke-width:1.6px!important; }
 
-    .feature-icon{
-      width:48px;height:48px;display:inline-flex;align-items:center;justify-content:center;
-      border-radius:10px;margin-right:.8rem;
-      background: linear-gradient(135deg, rgba(6,182,212,0.08), rgba(6,182,212,0.02));
-      border:1px solid rgba(255,255,255,0.03);
-    }
+    .benefit{ padding:2.2rem; text-align:center }
+    .benefit h5{ margin-top:.4rem; font-weight:700 }
+    .benefit p{ color:#475569 }
+    .product-card { padding:2rem; text-align:center }
+    .product-card h5{ margin-top:.6rem; font-weight:700 }
 
-    /* product grid */
-    .product-card{
-      border-radius:12px;padding:1rem;border:1px solid rgba(255,255,255,0.03);
-      background: linear-gradient(180deg, rgba(255,255,255,0.012), rgba(255,255,255,0.006));
-      transition: transform .18s ease;
-    }
-    .product-card:hover{ transform: translateY(-6px) scale(1.01); }
+    .contact-deco{ position:absolute; left:-12%; top: -8%; width:200px; height:200px; opacity:.08 }
 
-    /* subtle animated gradient underline */
-    .animated-underline{
-      display:inline-block;
-      background: linear-gradient(90deg, rgba(6,182,212,0.7), rgba(14,165,164,0.6));
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      animation: shade 3.5s linear infinite;
-      background-size: 200% 100%;
-    }
-    @keyframes shade { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
+    footer{ background:#0f172a; color:var(--muted); padding:2rem 0; margin-top:3.5rem; text-align:center }
+    .lang-btn.active { background: #0e7490 !important; color:white !important }
 
-    /* footer */
-    footer { opacity: .9; color: #9fb6c9; margin-top:2.5rem; }
-
-    /* responsive tweaks */
-    @media (max-width:768px){
-      .hero{ padding: 2rem 1rem; border-radius:12px; }
-    }
-
-    /* table styling */
-    .spec-table thead th{ background: rgba(255,255,255,0.02); border-bottom: none; color:#cfeaf3; }
-    .spec-table tbody td{ border-top:1px dashed rgba(255,255,255,0.03); color:#d6eef7; }
-
-    /* language toggle */
-    .lang-btn.active{ box-shadow: 0 8px 20px rgba(6,182,212,0.08); transform:translateY(-2px); }
-
-    /* small flourish */
-    .accent-dot{ width:10px;height:10px;background:linear-gradient(45deg,var(--accent2),var(--accent3));border-radius:50%;display:inline-block;margin-right:.6rem; }
+    .chem-icon { width:96px; height:96px; border-radius:50%; background:var(--accent-2); display:flex; align-items:center; justify-content:center; margin:0 auto 12px; color:white; font-weight:700; font-size:28px; }
+    @media (max-width:768px){ header h1{ font-size:2rem } .icon-xl svg, .chem-icon{ width:64px!important; height:64px!important; font-size:18px!important } }
   </style>
 </head>
 <body>
 
-  <div class="container py-4">
-
-    <!-- Header -->
-    <header class="d-flex align-items-center justify-content-between mb-3">
-      <div class="d-flex align-items-center gap-3">
-        <div class="brand-mark">
-          <!-- SVG logo -->
-          <svg width="44" height="44" viewBox="0 0 24 24" fill="none" aria-hidden>
-            <rect x="2" y="2" width="20" height="20" rx="5" fill="url(#g1)"/>
-            <defs>
-              <linearGradient id="g1" x1="0" x2="1">
-                <stop offset="0" stop-color="#06b6d4"/>
-                <stop offset="1" stop-color="#0ea5a4"/>
-              </linearGradient>
-            </defs>
-            <path d="M6 12h12M6 8h12M6 16h12" stroke="white" stroke-opacity="0.9" stroke-width="1.2" stroke-linecap="round"/>
-          </svg>
-        </div>
-        <div>
-          <h4 class="mb-0" id="brandTitle">Full Time Fertilizer</h4>
-          <small class="text-muted" id="brandSubtitle">Fornecedor experiente de fertilizantes — Tianjin, China</small>
+  <!-- Header -->
+  <header>
+    <svg class="top-deco" viewBox="0 0 1200 200" preserveAspectRatio="none" aria-hidden>
+      <defs>
+        <linearGradient id="waveGradTop" x1="0" x2="1"><stop offset="0" stop-color="#a5f3fc" /><stop offset="1" stop-color="#c7f9f3" /></linearGradient>
+      </defs>
+      <path d="M0,120 C300,40 900,200 1200,100 L1200,0 L0,0 Z" fill="url(#waveGradTop)"></path>
+    </svg>
+    <div class="container" style="position:relative;z-index:2;padding-top:40px;">
+      <h1 id="hero_title">Osvaldo Jatobá</h1>
+      <p id="hero_sub">Seu parceiro confiável para <span class="highlight">fertilizantes importados</span> com cotações competitivas</p>
+      <div class="d-flex justify-content-center gap-2 mb-3">
+        <a href="#produtos" class="btn btn-info btn-lg me-2 text-white" id="btn_view_products">Ver Produtos</a>
+        <a href="#contato" class="btn btn-outline-dark btn-lg" id="ctaContact">Fale Agora</a>
+      </div>
+      <div class="d-flex justify-content-center">
+        <div class="btn-group btn-group-sm">
+          <button id="btn-pt" class="btn btn-light lang-btn active" data-lang="pt">PT</button>
+          <button id="btn-en" class="btn btn-light lang-btn" data-lang="en">EN</button>
         </div>
       </div>
+    </div>
+  </header>
 
-      <div class="d-flex gap-2 align-items-center">
-        <div class="btn-group btn-group-sm" role="group" aria-label="Idioma">
-          <button id="btn-pt" class="btn btn-outline-light lang-btn active" data-lang="pt">PT</button>
-          <button id="btn-en" class="btn btn-outline-light lang-btn" data-lang="en">EN</button>
+  <!-- Benefícios -->
+  <section id="beneficios" class="container mt-4">
+    <h2 class="section-title" id="beneficios_title">Como o Osvaldo pode ajudar você</h2>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="card-base benefit">
+          <svg class="card-deco-svg" viewBox="0 0 300 140" preserveAspectRatio="none" aria-hidden><path d="M0,120 C60,20 240,20 300,80 L300,140 L0,140 Z" fill="var(--accent-2)"></path></svg>
+          <div class="icon-xl">$</div>
+          <h5 id="benefit_price">Melhores Preços</h5>
+          <p id="benefit_price_desc">Osvaldo pesquisa e compara fornecedores internacionais, negociando prazos e volumes para reduzir custos e garantir a melhor cotação.</p>
         </div>
-        <a class="btn btn-primary btn-sm" id="ctaContact"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope me-1" viewBox="0 0 16 16"><path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v.217l-8 4.8-8-4.8V4z"/><path d="M0 4.697v7.104l5.803-3.482L0 4.697zM6.761 8.83l-6.761 4.057A2 2 0 0 0 2 14h12a2 2 0 0 0 1.999-1.113L9.239 8.83 8 9.582l-1.239-.752zM16 11.801V4.697l-5.803 3.925L16 11.801z"/></svg><span id="ctaContactText">Contato</span></a>
       </div>
-    </header>
+      <div class="col-md-4">
+        <div class="card-base benefit">
+          <svg class="card-deco-svg" viewBox="0 0 300 140" preserveAspectRatio="none" aria-hidden><path d="M0,20 C80,120 220,120 300,40 L300,140 L0,140 Z" fill="var(--accent-2)"></path></svg>
+          <div class="icon-xl">🚚</div>
+          <h5 id="benefit_logistics">Logística Segura</h5>
+          <p id="benefit_logistics_desc">Coordenação de transporte e desembaraço aduaneiro, reduzindo riscos e entregando com eficiência até o destino final no Brasil.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card-base benefit">
+          <svg class="card-deco-svg" viewBox="0 0 300 140" preserveAspectRatio="none" aria-hidden><path d="M0,60 C70,10 230,10 300,60 L300,140 L0,140 Z" fill="var(--accent-2)"></path></svg>
+          <div class="icon-xl">🤝</div>
+          <h5 id="benefit_partnership">Parceria Direta</h5>
+          <p id="benefit_partnership_desc">Atendimento personalizado, embalagens e quantidades ajustadas ao seu mercado — soluções pensadas para importadores brasileiros.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <!-- Hero -->
-    <section class="hero">
+  <!-- Produtos -->
+  <section id="produtos" class="container mt-5">
+    <h2 class="section-title" id="products_title">Principais Fertilizantes</h2>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="card-base product-card">
+          <svg class="card-deco-svg" viewBox="0 0 300 140" preserveAspectRatio="none" aria-hidden><path d="M0,120 C60,20 240,20 300,80 L300,140 L0,140 Z" fill="#cdfbf6"></path></svg>
+          <div class="chem-icon">N</div>
+          <h5 id="prod_dap">Diammonium Phosphate (DAP)</h5>
+          <p id="prod_dap_desc">Fonte concentrada de fósforo, ideal para formulações NPK.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card-base product-card">
+          <svg class="card-deco-svg" viewBox="0 0 300 140" preserveAspectRatio="none" aria-hidden><path d="M0,20 C80,120 220,120 300,40 L300,140 L0,140 Z" fill="#fff1e0"></path></svg>
+          <div class="chem-icon">S</div>
+          <h5 id="prod_ammonium">Ammonium Sulphate</h5>
+          <p id="prod_ammonium_desc">N 20.5%min — Granular 2–4.75mm, CAS: 7783-20-2.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card-base product-card">
+          <svg class="card-deco-svg" viewBox="0 0 300 140" preserveAspectRatio="none" aria-hidden><path d="M0,60 C70,10 230,10 300,60 L300,140 L0,140 Z" fill="#e6fffb"></path></svg>
+          <div class="chem-icon">Mg</div>
+          <h5 id="prod_mg_hepta">Magnesium Sulfate Heptahydrate</h5>
+          <p id="prod_mg_hepta_desc">MgSO4·7H2O — Pureza 97% Min, CAS: 10034-99-8.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contato -->
+  <section id="contato" class="container mt-5 position-relative">
+    <h2 class="section-title" id="contact_title">Entre em Contato</h2>
+    <div class="card-base p-4 position-relative">
+      <svg class="contact-deco" viewBox="0 0 200 200" aria-hidden><circle cx="100" cy="60" r="90" fill="var(--accent-2)" /></svg>
       <div class="row align-items-center">
-        <div class="col-lg-7">
-          <h1 class="display-6 fw-bold mb-2" data-i18n="hero_title">Fornecedor global de fertilizantes com mais de 10 anos<span class="animated-underline"> de experiência</span></h1>
-          <p class="lead mb-4" data-i18n="hero_sub">Escritório central no porto de Tianjin. Exportamos Nitrogênio, Fósforo, Potássio, Micronutrientes e NPK personalizado — alcançando América Latina, África, Europa e Sudeste Asiático.</p>
-          <div class="d-flex gap-2">
-            <a class="btn btn-lg btn-success me-2" href="#produtos" data-i18n="btn_view_products">Ver produtos</a>
-            <a class="btn btn-lg btn-outline-light" href="#servicos" data-i18n="btn_services">Nossos serviços</a>
-          </div>
-          <div class="mt-4">
-            <small class="text-muted">Contato: <strong id="contactEmail">osvaldojatoba@hotmail.com</strong> • <span id="contactPhone">+55 82 99825 3182</span></small>
-          </div>
+        <div class="col-md-4 text-center">
+          <div class="icon-xl">✉️</div>
+          <p class="mb-0">Email: <a href="mailto:osvaldojatoba@hotmail.com" id="contactEmail">osvaldojatoba@hotmail.com</a></p>
         </div>
-
-        <div class="col-lg-5 text-center">
-          <!-- Decorative SVG -->
-          <svg width="320" height="220" viewBox="0 0 320 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden>
-            <defs>
-              <linearGradient id="lg" x1="0" x2="1"><stop offset="0" stop-color="#06b6d4"/><stop offset="1" stop-color="#0ea5a4"/></linearGradient>
-            </defs>
-            <rect x="12" y="12" width="296" height="196" rx="18" fill="rgba(255,255,255,0.02)"/>
-            <g transform="translate(40,36)" fill="none" stroke="url(#lg)" stroke-width="2" stroke-linecap="round">
-              <path d="M0 80 C30 45, 80 25, 120 30 C160 35, 210 60, 260 40" opacity="0.12"/>
-              <path d="M0 100 C30 65, 80 45, 120 50 C160 55, 210 80, 260 60" opacity="0.08"/>
-            </g>
-            <circle cx="260" cy="40" r="18" fill="url(#lg)" opacity="0.08"/>
-          </svg>
+        <div class="col-md-4 text-center">
+          <div class="icon-xl">📞</div>
+          <p class="mb-0">Telefone: <span id="contactPhone">+55 82 99825 3182</span></p>
+        </div>
+        <div class="col-md-4 text-center">
+          <a href="https://wa.me/5582998253182" target="_blank" rel="noopener" style="text-decoration:none; color:inherit;">
+            <div class="icon-xl" style="background:#25D366;border-radius:50%;width:96px;height:96px;display:flex;align-items:center;justify-content:center;margin:0 auto 12px;">
+              <i class="bi bi-whatsapp" style="font-size:40px;color:white;"></i>
+            </div>
+            <p class="mb-0">WhatsApp</p>
+          </a>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- About & Services -->
-    <section class="mt-4">
-      <div class="row g-3">
-        <div class="col-md-6">
-          <div class="glass-card">
-            <h5 class="mb-2" data-i18n="about_title">Perfil da Empresa</h5>
-            <p data-i18n="about_text">Tianjin Full Time Supply Chain Management Co., Ltd. (Full Time Fertilizer) é um dos principais exportadores de fertilizantes da China, com capital registrado de 8 milhões de dólares e mais de 10 anos de experiência. Atendemos mercados globais e oferecemos produtos personalizados e suporte técnico profissional.</p>
+  <footer>
+    <p id="footer_text">© 2025 — Osvaldo Jatobá • Importação de Fertilizantes</p>
+  </footer>
 
-            <div class="d-flex gap-2 mt-3 flex-wrap">
-              <span class="badge bg-light text-dark">NPK personalizado</span>
-              <span class="badge bg-light text-dark">Exportação global</span>
-              <span class="badge bg-light text-dark">Suporte técnico</span>
-              <span class="badge bg-light text-dark">Embalagem customizada</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-6">
-          <div class="glass-card">
-            <h5 class="mb-3" data-i18n="services_title">Nossos Serviços</h5>
-            <div class="d-flex align-items-start mb-2">
-              <div class="feature-icon">
-                <!-- gear SVG -->
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 15.5A3.5 3.5 0 1 0 12 8.5a3.5 3.5 0 0 0 0 7z" stroke="white" stroke-opacity=".9" stroke-width="1.2"/></svg>
-              </div>
-              <div>
-                <strong data-i18n="services_item1">Equipe profissional</strong>
-                <div class="text-muted small" data-i18n="services_item1_desc">Suporte técnico direcionado para uso científico dos produtos.</div>
-              </div>
-            </div>
-
-            <div class="d-flex align-items-start mb-2">
-              <div class="feature-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M3 12h18" stroke="white" stroke-opacity=".9" stroke-width="1.2" stroke-linecap="round"/></svg>
-              </div>
-              <div>
-                <strong data-i18n="services_item2">Embalagem customizada</strong>
-                <div class="text-muted small" data-i18n="services_item2_desc">Embalagens feitas sob medida para reconhecimento e segurança de transporte.</div>
-              </div>
-            </div>
-
-            <div class="d-flex align-items-start">
-              <div class="feature-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M2 12h20" stroke="white" stroke-opacity=".9" stroke-width="1.2" stroke-linecap="round"/></svg>
-              </div>
-              <div>
-                <strong data-i18n="services_item3">Suporte 24/7</strong>
-                <div class="text-muted small" data-i18n="services_item3_desc">Atendimento online e responsivo para solução de problemas imediatos.</div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Products -->
-    <section id="produtos" class="mt-4">
-      <div class="d-flex align-items-center justify-content-between mb-3">
-        <h4 class="mb-0" data-i18n="products_title">Nossos Fertilizantes</h4>
-        <small class="text-muted" data-i18n="products_sub">Lista representativa (extraída do catálogo)</small>
-      </div>
-
-      <div class="row row-cols-1 row-cols-md-3 g-3">
-        <!-- Card examples; kept concise but inclusive of PDF list -->
-        <div class="col">
-          <article class="product-card p-3 h-100">
-            <div class="d-flex align-items-start">
-              <div class="me-3">
-                <!-- fertilizer SVG -->
-                <svg width="48" height="48" viewBox="0 0 24 24" fill="none"><path d="M12 2v20" stroke="white" stroke-opacity=".9" stroke-width="1.6"/><circle cx="12" cy="8" r="3" stroke="white" stroke-opacity=".9"/></svg>
-              </div>
-              <div>
-                <h6 class="mb-1" data-i18n="prod_dap">Diammonium Phosphate (DAP)</h6>
-                <p class="small text-muted" data-i18n="prod_dap_desc">Fósforo técnico para aplicações agrícolas e formulações NPK.</p>
-              </div>
-            </div>
-          </article>
-        </div>
-
-        <div class="col">
-          <article class="product-card p-3 h-100">
-            <div class="d-flex align-items-start">
-              <div class="me-3">
-                <svg width="48" height="48" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="3" stroke="white" stroke-opacity=".9"/></svg>
-              </div>
-              <div>
-                <h6 class="mb-1" data-i18n="prod_ammonium">Ammonium Sulphate</h6>
-                <p class="small text-muted" data-i18n="prod_ammonium_desc">N 20.5%min — Grânulos 2-4.75mm (90% Min). CAS: 7783-20-2. MF: (NH4)2SO4</p>
-              </div>
-            </div>
-          </article>
-        </div>
-
-        <div class="col">
-          <article class="product-card p-3 h-100">
-            <div class="d-flex align-items-start">
-              <div class="me-3">
-                <svg width="48" height="48" viewBox="0 0 24 24" fill="none"><path d="M4 20h16" stroke="white" stroke-opacity=".9"/></svg>
-              </div>
-              <div>
-                <h6 class="mb-1" data-i18n="prod_mg_hepta">Magnesium Sulfate Heptahydrate</h6>
-                <p class="small text-muted" data-i18n="prod_mg_hepta_desc">MgSO4·7H2O — Pureza 97%Min / MgO ~15.5%Min — CAS: 10034-99-8</p>
-              </div>
-            </div>
-          </article>
-        </div>
-
-        <div class="col">
-          <article class="product-card p-3 h-100">
-            <div class="d-flex align-items-start">
-              <div class="me-3">
-                <svg width="48" height="48" viewBox="0 0 24 24" fill="none"><path d="M12 2l6 20H6z" stroke="white" stroke-opacity=".9"/></svg>
-              </div>
-              <div>
-                <h6 class="mb-1" data-i18n="prod_kieserite">Kieserite (MgSO4·H2O)</h6>
-                <p class="small text-muted" data-i18n="prod_kieserite_desc">Total MgO 27% Min / Tamanhos: 0.1–1mm, 2–4.5mm conforme necessidade.</p>
-              </div>
-            </div>
-          </article>
-        </div>
-
-        <div class="col">
-          <article class="product-card p-3 h-100">
-            <div class="d-flex align-items-start">
-              <div class="me-3">
-                <svg width="48" height="48" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3" stroke="white" stroke-opacity=".9"/></svg>
-              </div>
-              <div>
-                <h6 class="mb-1" data-i18n="prod_calcium_nitrate">Calcium Nitrate Granular (CAN)</h6>
-                <p class="small text-muted" data-i18n="prod_calcium_nitrate_desc">Nitrogênio 15.5% Min • CaO 25.5% Min • pH 5–7 • CAS: 15245-12-2</p>
-              </div>
-            </div>
-          </article>
-        </div>
-
-        <div class="col">
-          <article class="product-card p-3 h-100">
-            <div class="d-flex align-items-start">
-              <div class="me-3">
-                <svg width="48" height="48" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="2" stroke="white" stroke-opacity=".9"/></svg>
-              </div>
-              <div>
-                <h6 class="mb-1" data-i18n="prod_sop">Potassium Sulfate (SOP)</h6>
-                <p class="small text-muted" data-i18n="prod_sop_desc">Fonte de potássio para culturas sensíveis ao cloro.</p>
-              </div>
-            </div>
-          </article>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- Technical specs -->
-    <section id="specs" class="mt-4">
-      <h5 class="mb-3" data-i18n="specs_title">Especificações selecionadas</h5>
-
-      <div class="table-responsive glass-card">
-        <table class="table table-borderless spec-table mb-0">
-          <thead>
-            <tr>
-              <th scope="col" data-i18n="spec_col_item">Item</th>
-              <th scope="col" data-i18n="spec_col_appearance">Aparência</th>
-              <th scope="col" data-i18n="spec_col_composition">Composição / Padrão</th>
-              <th scope="col" data-i18n="spec_col_size">Tamanho</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Ammonium Sulphate</td>
-              <td data-i18n="spec_offwhite">Off White Granular / White Crystalline</td>
-              <td>N 20.5%min • S 23.5%min • Free acid 0.05%max</td>
-              <td data-i18n="spec_size_as">2–4.75mm, 90%Min / 2–5mm</td>
-            </tr>
-
-            <tr>
-              <td>Magnesium Sulfate Heptahydrate</td>
-              <td data-i18n="spec_whitecrystal">White Crystal</td>
-              <td>Purity 97%Min • MgO ~15.5%Min • S 12%Min</td>
-              <td data-i18n="spec_size_ms">0.1–1mm / 1–3mm / 2–4mm</td>
-            </tr>
-
-            <tr>
-              <td>Kieserite (MgSO4·H2O)</td>
-              <td data-i18n="spec_offwhites">Off-White / Customizado</td>
-              <td>Total MgO 27%Min • Water Soluble S 19%Min • Moisture 2%Max</td>
-              <td data-i18n="spec_size_k">0.1–1mm, 90%min • 2–4.5mm, 90%min</td>
-            </tr>
-
-            <tr>
-              <td>Calcium Nitrate Granular (CAN)</td>
-              <td data-i18n="spec_white">White</td>
-              <td>Nitrogen 15.5% Min • CaO 25.5% Min • pH 5–7</td>
-              <td data-i18n="spec_size_can">Granular</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-
-    <!-- Transportation -->
-    <section id="transp" class="mt-4">
-      <div class="row align-items-center">
-        <div class="col-md-6">
-          <div class="glass-card">
-            <h5 data-i18n="transp_title">Transporte & Embalagem</h5>
-            <p class="text-muted" data-i18n="transp_desc">Opções flexíveis: embarque em caminhões, contêineres ou a granel. Embalagens sob medida para proteger o produto durante o transporte internacional.</p>
-            <div class="d-flex gap-2 mt-3">
-              <span class="badge bg-light text-dark" data-i18n="transp_truck">Truck Shipment</span>
-              <span class="badge bg-light text-dark" data-i18n="transp_container">Container Shipment</span>
-              <span class="badge bg-light text-dark" data-i18n="transp_bulk">Bulk Shipment</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-6">
-          <div class="glass-card text-center">
-            <svg width="120" height="80" viewBox="0 0 120 80"><rect x="4" y="10" width="110" height="40" rx="6" fill="rgba(255,255,255,0.02)"/><path d="M18 50h84" stroke="white" stroke-opacity=".9"/><circle cx="30" cy="62" r="6" fill="rgba(255,255,255,0.06)"/><circle cx="88" cy="62" r="6" fill="rgba(255,255,255,0.06)"/></svg>
-            <div class="mt-2 small text-muted" data-i18n="transp_note">Logística internacional disponível — entre em contato para rotas e custos.</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Contact & Footer -->
-    <footer class="mt-5">
-      <div class="d-flex justify-content-between align-items-start flex-column flex-md-row gap-3">
-        <div>
-          <h6 class="mb-1"><span class="accent-dot"></span><span data-i18n="footer_company">Tianjin Full Time Supply Chain Management Co., Ltd.</span></h6>
-          <div class="text-muted small" data-i18n="footer_address">Head office: Tianjin Port • Capital registrado: USD 8,000,000</div>
-          <div class="mt-2 small">
-            <strong>Email:</strong> <span id="footerEmail">osvaldojatoba@hotmail.com</span><br/>
-            <strong>Telefone:</strong> <span id="footerPhone">+55 82 99825 3182</span>
-          </div>
-        </div>
-
-        <div class="text-end">
-          <div class="small text-muted">Conteúdo baseado no catálogo enviado. :contentReference[oaicite:1]{index=1}</div>
-          <div class="mt-2 small">© Full Time Fertilizer</div>
-        </div>
-      </div>
-    </footer>
-
-  </div>
-
-  <!-- Bootstrap & dependencies JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
   <script>
-    // Strings organized for easy localization
     const LANG = {
       pt: {
-        hero_title: "Fornecedor global de fertilizantes com mais de 10 anos",
-        hero_sub: "Escritório central no porto de Tianjin. Exportamos Nitrogênio, Fósforo, Potássio, Micronutrientes e NPK personalizado — alcançando América Latina, África, Europa e Sudeste Asiático.",
-        btn_view_products: "Ver produtos",
-        btn_services: "Nossos serviços",
-        about_title: "Perfil da Empresa",
-        about_text: "Tianjin Full Time Supply Chain Management Co., Ltd. (Full Time Fertilizer) é um dos principais exportadores de fertilizantes da China, com capital registrado de 8 milhões de dólares e mais de 10 anos de experiência. Atendemos mercados globais e oferecemos produtos personalizados e suporte técnico profissional.",
-        services_title: "Nossos Serviços",
-        services_item1: "Equipe profissional",
-        services_item1_desc: "Suporte técnico direcionado para uso científico dos produtos.",
-        services_item2: "Embalagem customizada",
-        services_item2_desc: "Embalagens feitas sob medida para reconhecimento e segurança de transporte.",
-        services_item3: "Suporte 24/7",
-        services_item3_desc: "Atendimento online e responsivo para solução de problemas imediatos.",
-        products_title: "Nossos Fertilizantes",
-        products_sub: "Lista representativa (extraída do catálogo)",
+        hero_title: "Osvaldo Jatobá",
+        hero_sub: "Seu parceiro confiável para <span class=\"highlight\">fertilizantes importados</span> com cotações competitivas",
+        btn_view_products: "Ver Produtos",
+        products_title: "Principais Fertilizantes",
         prod_dap: "Diammonium Phosphate (DAP)",
-        prod_dap_desc: "Fósforo técnico para aplicações agrícolas e formulações NPK.",
+        prod_dap_desc: "Fonte concentrada de fósforo, ideal para formulações NPK.",
         prod_ammonium: "Ammonium Sulphate",
-        prod_ammonium_desc: "N 20.5%min — Grânulos 2-4.75mm (90% Min). CAS: 7783-20-2.",
+        prod_ammonium_desc: "N 20.5%min — Granular 2–4.75mm, CAS: 7783-20-2.",
         prod_mg_hepta: "Magnesium Sulfate Heptahydrate",
-        prod_mg_hepta_desc: "MgSO4·7H2O — Pureza 97%Min • MgO ~15.5%Min • CAS: 10034-99-8",
-        prod_kieserite: "Kieserite (MgSO4·H2O)",
-        prod_kieserite_desc: "Total MgO 27% Min • Tamanhos: 0.1–1mm, 2–4.5mm conforme necessidade.",
-        prod_calcium_nitrate: "Calcium Nitrate Granular (CAN)",
-        prod_calcium_nitrate_desc: "Nitrogênio 15.5% Min • CaO 25.5% Min • pH 5–7",
-        prod_sop: "Potassium Sulfate (SOP)",
-        prod_sop_desc: "Fonte de potássio para culturas sensíveis ao cloro.",
-        specs_title: "Especificações selecionadas",
-        spec_col_item: "Item",
-        spec_col_appearance: "Aparência",
-        spec_col_composition: "Composição / Padrão",
-        spec_col_size: "Tamanho",
-        spec_offwhite: "Off White Granular / White Crystalline",
-        spec_size_as: "2–4.75mm, 90%Min / 2–5mm",
-        spec_whitecrystal: "White Crystal",
-        spec_size_ms: "0.1–1mm / 1–3mm / 2–4mm",
-        spec_offwhites: "Off-White / Customizado",
-        spec_size_k: "0.1–1mm, 90%min • 2–4.5mm, 90%min",
-        spec_white: "White",
-        spec_size_can: "Granular",
-        transp_title: "Transporte & Embalagem",
-        transp_desc: "Opções flexíveis: embarque em caminhões, contêineres ou a granel. Embalagens sob medida para proteger o produto durante o transporte internacional.",
-        transp_truck: "Truck Shipment",
-        transp_container: "Container Shipment",
-        transp_bulk: "Bulk Shipment",
-        transp_note: "Logística internacional disponível — entre em contato para rotas e custos.",
-        footer_company: "Tianjin Full Time Supply Chain Management Co., Ltd.",
-        footer_address: "Head office: Tianjin Port • Capital registrado: USD 8,000,000",
-        ctaContact: "Contato",
-        ctaContactText: "Contato"
+        prod_mg_hepta_desc: "MgSO4·7H2O — Pureza 97% Min, CAS: 10034-99-8.",
+        contact_title: "Entre em Contato",
+        footer_text: "© 2025 — Osvaldo Jatobá • Importação de Fertilizantes",
+        ctaContact: "Fale Agora",
+        beneficios_title: "Como o Osvaldo pode ajudar você",
+        benefit_price: "Melhores Preços",
+        benefit_price_desc: "Osvaldo pesquisa e compara fornecedores internacionais, negociando prazos e volumes para reduzir custos e garantir a melhor cotação.",
+        benefit_logistics: "Logística Segura",
+        benefit_logistics_desc: "Coordenação de transporte e desembaraço aduaneiro, reduzindo riscos e entregando com eficiência até o destino final no Brasil.",
+        benefit_partnership: "Parceria Direta",
+        benefit_partnership_desc: "Atendimento personalizado, embalagens e quantidades ajustadas ao seu mercado — soluções pensadas para importadores brasileiros."
       },
       en: {
-        hero_title: "Global fertilizer supplier with 10+ years",
-        hero_sub: "Head office at Tianjin Port. We export Nitrogen, Phosphate, Potash, Micronutrients and customized NPK to Latin America, Africa, Europe and Southeast Asia.",
-        btn_view_products: "View products",
-        btn_services: "Our services",
-        about_title: "Company Profile",
-        about_text: "Tianjin Full Time Supply Chain Management Co., Ltd. (Full Time Fertilizer) is a leading fertilizer exporter from China, registered capital USD 8M and 10+ years experience. We provide customized products and professional technical support.",
-        services_title: "Our Services",
-        services_item1: "Professional Team",
-        services_item1_desc: "Targeted technical support for scientific use of products.",
-        services_item2: "Custom Packaging",
-        services_item2_desc: "Tailor-made packaging to improve recognition and safety.",
-        services_item3: "24/7 Support",
-        services_item3_desc: "Online and responsive support to quickly solve issues.",
-        products_title: "Our Fertilizers",
-        products_sub: "Representative list (extracted from catalog)",
+        hero_title: "Osvaldo Jatobá",
+        hero_sub: "Your trusted partner for <span class=\"highlight\">imported fertilizers</span> with competitive quotes",
+        btn_view_products: "View Products",
+        products_title: "Main Fertilizers",
         prod_dap: "Diammonium Phosphate (DAP)",
-        prod_dap_desc: "Technical phosphate for agricultural use and NPK formulas.",
+        prod_dap_desc: "Concentrated phosphorus source, ideal for NPK formulations.",
         prod_ammonium: "Ammonium Sulphate",
-        prod_ammonium_desc: "N 20.5%min — Granular 2-4.75mm (90% Min). CAS: 7783-20-2.",
+        prod_ammonium_desc: "N 20.5%min — Granular 2–4.75mm, CAS: 7783-20-2.",
         prod_mg_hepta: "Magnesium Sulfate Heptahydrate",
-        prod_mg_hepta_desc: "MgSO4·7H2O — Purity 97%Min • MgO ~15.5%Min • CAS: 10034-99-8",
-        prod_kieserite: "Kieserite (MgSO4·H2O)",
-        prod_kieserite_desc: "Total MgO 27% Min • Sizes: 0.1–1mm, 2–4.5mm.",
-        prod_calcium_nitrate: "Calcium Nitrate Granular (CAN)",
-        prod_calcium_nitrate_desc: "Nitrogen 15.5% Min • CaO 25.5% Min • pH 5–7",
-        prod_sop: "Potassium Sulfate (SOP)",
-        prod_sop_desc: "Potassium source for chloride-sensitive crops.",
-        specs_title: "Selected specifications",
-        spec_col_item: "Item",
-        spec_col_appearance: "Appearance",
-        spec_col_composition: "Composition / Standard",
-        spec_col_size: "Size",
-        spec_offwhite: "Off White Granular / White Crystalline",
-        spec_size_as: "2–4.75mm, 90%Min / 2–5mm",
-        spec_whitecrystal: "White Crystal",
-        spec_size_ms: "0.1–1mm / 1–3mm / 2–4mm",
-        spec_offwhites: "Off-White / Customized",
-        spec_size_k: "0.1–1mm, 90%min • 2–4.5mm, 90%min",
-        spec_white: "White",
-        spec_size_can: "Granular",
-        transp_title: "Transport & Packaging",
-        transp_desc: "Flexible options: truck, container or bulk shipments. Custom packaging to protect product during international transport.",
-        transp_truck: "Truck Shipment",
-        transp_container: "Container Shipment",
-        transp_bulk: "Bulk Shipment",
-        transp_note: "International logistics available — contact us for routes & rates.",
-        footer_company: "Tianjin Full Time Supply Chain Management Co., Ltd.",
-        footer_address: "Head office: Tianjin Port • Registered capital: USD 8,000,000",
-        ctaContact: "Contact",
-        ctaContactText: "Contact"
+        prod_mg_hepta_desc: "MgSO4·7H2O — Purity 97% Min, CAS: 10034-99-8.",
+        contact_title: "Get in Touch",
+        footer_text: "© 2025 — Osvaldo Jatobá • Fertilizer Imports",
+        ctaContact: "Contact Now",
+        beneficios_title: "How Osvaldo Can Help You",
+        benefit_price: "Best Prices",
+        benefit_price_desc: "Osvaldo researches and compares international suppliers, negotiating terms and volumes to reduce costs and secure the best quote.",
+        benefit_logistics: "Secure Logistics",
+        benefit_logistics_desc: "Transport and customs clearance coordination, reducing risks and ensuring efficient delivery to Brazil.",
+        benefit_partnership: "Direct Partnership",
+        benefit_partnership_desc: "Personalized service, packaging and quantities tailored to your market — solutions designed for Brazilian importers."
       }
     };
-
-    // Apply language strings to elements with data-i18n
-    function applyLanguage(langKey){
-      const dict = LANG[langKey] || LANG.pt;
-      document.querySelectorAll('[data-i18n]').forEach(el=>{
-        const key = el.getAttribute('data-i18n');
-        if(dict[key]) el.innerText = dict[key];
-      });
-
-      // Update some direct IDs if needed
-      document.getElementById('brandTitle').innerText = "Full Time Fertilizer";
-      document.getElementById('brandSubtitle').innerText = (langKey === 'pt') ? "Fornecedor experiente de fertilizantes — Tianjin, China" : "Experienced Fertilizer Supplier — Tianjin, China";
-      // CTA
-      document.getElementById('ctaContactText').innerText = dict.ctaContactText || dict.ctaContact;
-    }
-
-    // Language toggle buttons
-    document.querySelectorAll('.lang-btn').forEach(btn=>{
-      btn.addEventListener('click', (e)=>{
-        const lang = btn.dataset.lang;
-        document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));
-        btn.classList.add('active');
-        applyLanguage(lang);
-      });
-    });
-
-    // Set default language to Portuguese
+    function applyLanguage(lang){ const dict = LANG[lang]||LANG.pt; for(const key in dict){ const el=document.getElementById(key); if(el) el.innerHTML=dict[key]; } }
+    document.querySelectorAll('.lang-btn').forEach(btn=>{ btn.addEventListener('click',()=>{ document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); applyLanguage(btn.dataset.lang); }); });
     applyLanguage('pt');
-
-    // Smooth scrolling for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(a=>{
-      a.addEventListener('click', function(e){
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if(target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      });
-    });
-
-    // Contact CTA opens mailto (from PDF contact)
-    document.getElementById('ctaContact').addEventListener('click', function(e){
-      // Use the provided email & phone from the PDF
-      const mail = 'osvaldojatoba@hotmail.com';
-      window.location.href = 'mailto:'+mail+'?subject=Interesse%20em%20Fertilizantes';
-    });
-
-    // Map contact in footer (no images)
-    document.getElementById('footerEmail').innerText = 'osvaldojatoba@hotmail.com';
-    document.getElementById('footerPhone').innerText = '+55 82 99825 3182';
-
-    // Optional: expose LANG for future dynamic editing
-    window._CATALOG_LANG = LANG;
   </script>
 </body>
 </html>
