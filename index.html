@@ -13,15 +13,42 @@
 
   <style>
     :root{ --accent-1: #0ea5a4; --accent-2: #06b6d4; --muted:#94a3b8 }
-    body { font-family: Inter, system-ui, sans-serif; background: #f7fafc; color: #334155; }
-    header { background: linear-gradient(135deg, #e0f7fa, #f0fdfa); color: #0f172a; padding: 5rem 0 3rem; border-bottom-left-radius: 3rem; border-bottom-right-radius: 3rem; text-align: center; position: relative; overflow: hidden; }
+    body { 
+      font-family: Inter, system-ui, sans-serif; 
+      background: linear-gradient(rgba(247, 250, 252, 0.6), rgba(247, 250, 252, 0.4)), 
+                   url('img/cottom-field-background.png') center/cover no-repeat fixed;
+      color: #334155; 
+      min-height: 100vh;
+    }
+    header { 
+      background: linear-gradient(135deg, rgba(224, 247, 250, 0.85), rgba(240, 253, 250, 0.75)); 
+      color: #0f172a; 
+      padding: 5rem 0 3rem; 
+      border-bottom-left-radius: 3rem; 
+      border-bottom-right-radius: 3rem; 
+      text-align: center; 
+      position: relative; 
+      overflow: hidden; 
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
     header .top-deco{ position:absolute;left:0;right:0;top:0;width:100%;height:150px;pointer-events:none }
     header h1 { font-weight: 800; color: #0e7490; font-size: 3rem; }
     header p { font-size: 1.15rem; color: #155e75; margin-bottom: .5rem; }
     .highlight { color: var(--accent-1); font-weight:700 }
     .section-title { margin: 3rem 0 2rem; text-align: center; font-weight: 700; color: #0f172a; }
 
-    .card-base { border: none; border-radius: 1.2rem; background: white; box-shadow: 0 8px 24px rgba(16,24,40,0.06); transition: transform .22s ease, box-shadow .22s ease; position: relative; overflow: hidden; }
+    .card-base { 
+      border: none; 
+      border-radius: 1.2rem; 
+      background: rgba(255, 255, 255, 0.8); 
+      box-shadow: 0 8px 24px rgba(16,24,40,0.1); 
+      transition: transform .22s ease, box-shadow .22s ease; 
+      position: relative; 
+      overflow: hidden; 
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
     .card-base:hover{ transform: translateY(-6px); box-shadow: 0 18px 38px rgba(16,24,40,0.08) }
 
     .card-deco-svg{ position:absolute; right:-10%; top:-10%; width:160%; height:160%; opacity:.12; transform: rotate(6deg); }
@@ -37,11 +64,152 @@
 
     .contact-deco{ position:absolute; left:-12%; top: -8%; width:200px; height:200px; opacity:.08 }
 
-    footer{ background:#0f172a; color:var(--muted); padding:2rem 0; margin-top:3.5rem; text-align:center }
+    footer{ 
+      background: rgba(15, 23, 42, 0.8); 
+      color: var(--muted); 
+      padding: 2rem 0; 
+      margin-top: 3.5rem; 
+      text-align: center; 
+      backdrop-filter: blur(8px);
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+    }
     .lang-btn.active { background: #0e7490 !important; color:white !important }
 
     .chem-icon { width:96px; height:96px; border-radius:50%; background:var(--accent-2); display:flex; align-items:center; justify-content:center; margin:0 auto 12px; color:white; font-weight:700; font-size:28px; }
-    @media (max-width:768px){ header h1{ font-size:2rem } .icon-xl svg, .chem-icon{ width:64px!important; height:64px!important; font-size:18px!important } }
+    
+    /* Seção de destaque para mostrar mais o campo de algodão */
+    .benefits-section {
+      background: linear-gradient(rgba(247, 250, 252, 0.3), rgba(247, 250, 252, 0.2));
+      backdrop-filter: blur(2px);
+      border-radius: 2rem;
+      margin: 2rem 0;
+      padding: 2rem 0;
+    }
+    
+    .products-section {
+      background: linear-gradient(rgba(247, 250, 252, 0.2), rgba(247, 250, 252, 0.1));
+      backdrop-filter: blur(1px);
+      border-radius: 2rem;
+      margin: 2rem 0;
+      padding: 2rem 0;
+    }
+    
+    /* Fertilizers Catalog Section - Design Simples */
+    .fertilizers-catalog-section {
+      background: linear-gradient(rgba(247, 250, 252, 0.1), rgba(247, 250, 252, 0.05));
+      backdrop-filter: blur(1px);
+      border-radius: 2rem;
+      margin: 2rem 0;
+      padding: 3rem 0;
+    }
+    
+    .fertilizers-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    
+    .fertilizer-category {
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+    
+    .fertilizer-category:hover {
+      transform: translateY(-5px);
+    }
+    
+    .category-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+    }
+    
+    .category-symbol {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: white;
+      margin-right: 1rem;
+    }
+    
+    .nitrogen-symbol { background: #3b82f6; }
+    .phosphorus-symbol { background: #10b981; }
+    .potassium-symbol { background: #3b82f6; }
+    .magnesium-symbol { background: #10b981; }
+    .micros-symbol { background: #3b82f6; }
+    
+    .category-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin: 0;
+    }
+    
+    .products-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    
+    .product-item {
+      background: rgba(255, 255, 255, 0.6);
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      color: #374151;
+      border-left: 3px solid transparent;
+      transition: all 0.3s ease;
+    }
+    
+    .fertilizer-category:nth-child(1) .product-item { border-left-color: #3b82f6; }
+    .fertilizer-category:nth-child(2) .product-item { border-left-color: #10b981; }
+    .fertilizer-category:nth-child(3) .product-item { border-left-color: #3b82f6; }
+    .fertilizer-category:nth-child(4) .product-item { border-left-color: #10b981; }
+    .fertilizer-category:nth-child(5) .product-item { border-left-color: #3b82f6; }
+    
+    .product-item:hover {
+      background: rgba(255, 255, 255, 0.9);
+      transform: translateX(5px);
+    }
+    
+    
+    @media (max-width:768px){ 
+      header h1{ font-size:2rem } 
+      .icon-xl svg, .chem-icon{ width:64px!important; height:64px!important; font-size:18px!important }
+      
+      /* Responsividade simples para catálogo */
+      .fertilizers-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+      
+      .fertilizer-category {
+        padding: 1rem;
+      }
+      
+      .category-symbol {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+      }
+      
+      .category-title {
+        font-size: 1rem;
+      }
+    }
   </style>
 </head>
 <body>
@@ -59,6 +227,7 @@
       <p id="hero_sub">Seu parceiro confiável para <span class="highlight">fertilizantes importados</span> com cotações competitivas</p>
       <div class="d-flex justify-content-center gap-2 mb-3">
         <a href="#produtos" class="btn btn-info btn-lg me-2 text-white" id="btn_view_products">Ver Produtos</a>
+        <a href="#catalogo" class="btn btn-outline-info btn-lg me-2" id="btn_view_catalog">Catálogo Completo</a>
         <a href="#contato" class="btn btn-outline-dark btn-lg" id="ctaContact">Fale Agora</a>
       </div>
       <div class="d-flex justify-content-center">
@@ -70,8 +239,10 @@
     </div>
   </header>
 
+
   <!-- Benefícios -->
-  <section id="beneficios" class="container mt-4">
+  <section id="beneficios" class="benefits-section">
+    <div class="container">
     <h2 class="section-title" id="beneficios_title">Como a L3 International Business pode ajudar você</h2>
     <div class="row g-4">
       <div class="col-md-4">
@@ -99,10 +270,12 @@
         </div>
       </div>
     </div>
+    </div>
   </section>
 
   <!-- Produtos -->
-  <section id="produtos" class="container mt-5">
+  <section id="produtos" class="products-section">
+    <div class="container">
     <h2 class="section-title" id="products_title">Principais Fertilizantes</h2>
     <div class="row g-4">
       <div class="col-md-4">
@@ -127,6 +300,88 @@
           <div class="chem-icon">Mg</div>
           <h5 id="prod_mg_hepta">Magnesium Sulfate Heptahydrate</h5>
           <p id="prod_mg_hepta_desc">MgSO4·7H2O — Pureza 97% Min, CAS: 10034-99-8.</p>
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- Catálogo Completo de Fertilizantes -->
+  <section id="catalogo" class="fertilizers-catalog-section">
+    <div class="container">
+      <h2 class="section-title" id="catalog_title">Nossos Fertilizantes</h2>
+      
+      <!-- Categorias em Grid Simples -->
+      <div class="fertilizers-grid">
+        <!-- Nitrogen -->
+        <div class="fertilizer-category">
+          <div class="category-header">
+            <div class="category-symbol nitrogen-symbol">N</div>
+            <h3 class="category-title">NITROGEN</h3>
+          </div>
+          <div class="products-grid">
+            <div class="product-item">Ammonium Sulphate</div>
+            <div class="product-item">Ammonium Chloride</div>
+            <div class="product-item">Calcium Nitrate Granular (CAN)</div>
+            <div class="product-item">Magnesium Nitrate (MgN)</div>
+            <div class="product-item">Urea Prilled/Adblue</div>
+          </div>
+        </div>
+        
+        <!-- Phosphorus -->
+        <div class="fertilizer-category">
+          <div class="category-header">
+            <div class="category-symbol phosphorus-symbol">P</div>
+            <h3 class="category-title">PHOSPHATE</h3>
+          </div>
+          <div class="products-grid">
+            <div class="product-item">Technical Monoammonium Phosphate (TMAP)</div>
+            <div class="product-item">Diammonium Phosphate (DAP)</div>
+            <div class="product-item">Mono Potassium Phosphate (MKP)</div>
+            <div class="product-item">Urea Phosphate (UP)</div>
+          </div>
+        </div>
+        
+        <!-- Potassium -->
+        <div class="fertilizer-category">
+          <div class="category-header">
+            <div class="category-symbol potassium-symbol">K</div>
+            <h3 class="category-title">POTASH</h3>
+          </div>
+          <div class="products-grid">
+            <div class="product-item">Potassium Sulphate (SOP)</div>
+            <div class="product-item">Potassium Nitrate (NOP)</div>
+            <div class="product-item">Customized Formula NPK</div>
+          </div>
+        </div>
+        
+        <!-- Magnesium -->
+        <div class="fertilizer-category">
+          <div class="category-header">
+            <div class="category-symbol magnesium-symbol">Mg</div>
+            <h3 class="category-title">MAGNESIUM</h3>
+          </div>
+          <div class="products-grid">
+            <div class="product-item">Magnesium Sulphate Mono (Kieserite)</div>
+            <div class="product-item">Magnesium Sulphate Hepta (MgS Hepta)</div>
+            <div class="product-item">Magnesium Sulphate Anhydrous (MgS An)</div>
+            <div class="product-item">Magnesium Oxide (MgO)</div>
+          </div>
+        </div>
+        
+        <!-- Micros -->
+        <div class="fertilizer-category">
+          <div class="category-header">
+            <div class="category-symbol micros-symbol">M</div>
+            <h3 class="category-title">MICROS</h3>
+          </div>
+          <div class="products-grid">
+            <div class="product-item">Zinc Sulphate (ZnS)</div>
+            <div class="product-item">Manganese Sulphate (MnS)</div>
+            <div class="product-item">Ferrous Sulphate (FeS)</div>
+            <div class="product-item">Copper Sulphate (CuS)</div>
+            <div class="product-item">Calcium Chloride (CaCl)</div>
+          </div>
         </div>
       </div>
     </div>
@@ -169,6 +424,7 @@
         hero_title: "L3 International Business",
         hero_sub: "Seu parceiro confiável para <span class=\"highlight\">fertilizantes importados</span> com cotações competitivas",
         btn_view_products: "Ver Produtos",
+        btn_view_catalog: "Catálogo Completo",
         products_title: "Principais Fertilizantes",
         prod_dap: "Diammonium Phosphate (DAP)",
         prod_dap_desc: "Fonte concentrada de fósforo, ideal para formulações NPK.",
@@ -185,12 +441,14 @@
         benefit_logistics: "Logística Segura",
         benefit_logistics_desc: "Coordenação de transporte e desembaraço aduaneiro, reduzindo riscos e entregando com eficiência até o destino final no Brasil.",
         benefit_partnership: "Parceria Direta",
-        benefit_partnership_desc: "Atendimento personalizado, embalagens e quantidades ajustadas ao seu mercado — soluções pensadas para importadores brasileiros."
+        benefit_partnership_desc: "Atendimento personalizado, embalagens e quantidades ajustadas ao seu mercado — soluções pensadas para importadores brasileiros.",
+        catalog_title: "Nossos Fertilizantes"
       },
       en: {
         hero_title: "L3 International Business",
         hero_sub: "Your trusted partner for <span class=\"highlight\">imported fertilizers</span> with competitive quotes",
         btn_view_products: "View Products",
+        btn_view_catalog: "Complete Catalog",
         products_title: "Main Fertilizers",
         prod_dap: "Diammonium Phosphate (DAP)",
         prod_dap_desc: "Concentrated phosphorus source, ideal for NPK formulations.",
@@ -207,7 +465,8 @@
         benefit_logistics: "Secure Logistics",
         benefit_logistics_desc: "Transport and customs clearance coordination, reducing risks and ensuring efficient delivery to Brazil.",
         benefit_partnership: "Direct Partnership",
-        benefit_partnership_desc: "Personalized service, packaging and quantities tailored to your market — solutions designed for Brazilian importers."
+        benefit_partnership_desc: "Personalized service, packaging and quantities tailored to your market — solutions designed for Brazilian importers.",
+        catalog_title: "Our Fertilizers"
       }
     };
     function applyLanguage(lang){ const dict = LANG[lang]||LANG.pt; for(const key in dict){ const el=document.getElementById(key); if(el) el.innerHTML=dict[key]; } }
